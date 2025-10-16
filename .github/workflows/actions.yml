@@ -21,6 +21,7 @@ jobs:
           sed -i 's/modifiedAt: String/modifiedAt: String!/g' ./example/schemas/schema.graphql
           sed -i 's/post: Post!/post(id: ID): Post!/g' ./example/schemas/schema.graphql
           cat ./example/schemas/schema.graphql
+          echo "Custom rule"
           cat ./example/rules/custom-rule.js
 
       - name: Run Inspector
