@@ -21,6 +21,8 @@ jobs:
           sed -i 's/modifiedAt: String/modifiedAt: String!/g' ./example/schemas/schema.graphql
           sed -i 's/post: Post!/post(id: ID): Post!/g' ./example/schemas/schema.graphql
           cat ./example/schemas/schema.graphql
+          echo "Custom rule"
+          cat ./example/rules/custom-rule.js
 
       - name: Run Inspector
         uses: ./
@@ -28,9 +30,7 @@ jobs:
         with:
           experimental_merge: false
           schema: 'master:example/schemas/schema.graphql'
-          rules: |
-            suppressRemovalOfDeprecatedField
-            ./example/rules/custom-rule.js
+          rules: suppressRemovalOfDeprecatedField ./example/rules/custom-rule.js
 
       - name: Validate result
         if: steps.inspector.outputs.changes != 4
