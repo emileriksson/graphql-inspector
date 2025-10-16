@@ -27,10 +27,8 @@ jobs:
         id: inspector
         with:
           experimental_merge: false
-          schema: 'master:example/schemas/schema.graphql'
-          rules: |
-            suppressRemovalOfDeprecatedField
-            ./example/rules/custom-rule.js
+          schema: "master:example/schemas/schema.graphql"
+          rules: suppressRemovalOfDeprecatedField ./example/rules/custom-rule.js
 
       - name: Validate result
         if: steps.inspector.outputs.changes != 4
